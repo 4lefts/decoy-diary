@@ -1,44 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const WeekStatus = ({ status, submitNewData }) => {
-  // const [isEditing, setIsEditing] = useState(false);
-  // const [editingStatus, setEditingStatus] = useState(status);
-
-  // const handleStatusEdit = event => {
-  //   setEditingStatus(event.target.value);
-  // };
-
-  // const handleStatusUpdate = () => {
-  //   event.preventDefault();
-  //   submitNewData(editingStatus);
-  //   setIsEditing(false);
-  // };
-
-  // return isEditing ? (
-  //   <>
-  //     <form onSubmit={handleStatusUpdate}>
-  //       <label>
-  //         Edit status:
-  //         <select value={editingStatus} onChange={handleStatusEdit}>
-  //           <option value="normal">Normal</option>
-  //           <option value="holiday">Holiday</option>
-  //         </select>
-  //       </label>
-  //       <button onClick={() => setIsEditing(false)}>Cancel Edit</button>
-  //       <input type="submit" value="submit" />
-  //     </form>
-  //     <style jsx>{`
-  //       display: inline-block;
-  //     `}</style>
-  //   </>
-  // ) : (
-  //   <span onClick={() => setIsEditing(true)}>({status})</span>
-  // );
   const [currentStatus, setCurrentStatus] = useState(status);
-  const [isEditing, setIsEdting] = useState(false);
 
-  const toggleCurrentStatus = () => {
-    setIsEdting(true);
+  const handleStatusUpdate = () => {
     if (currentStatus === "normal") {
       setCurrentStatus("holiday");
     } else {
@@ -46,25 +11,14 @@ const WeekStatus = ({ status, submitNewData }) => {
     }
   };
 
-  const cancelEdit = () => {
-    setCurrentStatus(status);
-    setIsEdting(false);
-  };
-
-  const handleStatusUpdate = () => {
-    submitNewData(currentStatus);
-    setIsEdting(false);
-  };
+  useEffect(() => {
+    // i.e. if the status has changed but not been commited to the db, then
+    if (currentStatus != status) submitNewData(currentStatus);
+  });
 
   return (
     <div>
-      <span onClick={toggleCurrentStatus}>{currentStatus}</span>
-      {isEditing && (
-        <>
-          <button onClick={cancelEdit}>Cancel</button>
-          <button onClick={handleStatusUpdate}>Submit</button>
-        </>
-      )}
+      <span onClick={handleStatusUpdate}>{currentStatus}</span>
       <style jsx>{`
         span {
           margin-left: 20px;

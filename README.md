@@ -9,3 +9,4 @@ Clone this repo, `npm install` and `npm run dev` to start developing.
 - styling error box
 - adding markdown/rich text editing and storage
 - adding "holiday week" functionality (available to admin/smt only?)
+- server-side stuff for refreshing pages

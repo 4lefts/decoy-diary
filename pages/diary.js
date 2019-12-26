@@ -5,7 +5,6 @@ import { calcCurrentMonday } from "../functions/mondayFunctions";
 import { makeBlankWeek } from "../functions/makeBlankWeek";
 import withContainer from "../components/Container";
 import MondayNav from "../components/MondayNav";
-import WeekStatus from "../components/WeekStatus";
 import Day from "../components/day/Day";
 import Loader from "../components/Loader";
 import ErrorBox from "../components/ErrorBox";
@@ -26,7 +25,7 @@ const Diary = () => {
       setIsLoadingData(bool);
     }
     function updateErrorMessage(code) {
-      const msg = `Sorry, there was and error: ${code}.`;
+      const msg = `Sorry, there was an error: ${code}.`;
       setErrorMessage(msg);
     }
     updateDataLoadingState(true);
@@ -35,7 +34,6 @@ const Diary = () => {
       snapshot => {
         const data = snapshot.data() || makeBlankWeek();
         updateData(data);
-        // console.log(`data from db:\n${JSON.stringify(data, null, 2)}`);
         updateDataLoadingState(false);
       },
       err => {
