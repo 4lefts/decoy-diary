@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DOMpurify from "dompurify";
 import marked from "marked";
 import DayHeader from "./DayHeader";
 import DayEditForm from "./DayEditForm";
@@ -10,7 +11,9 @@ const Day = ({ dayData, submitNewData }) => {
   const [contentHtml, setContentHtml] = useState(marked(content));
 
   useEffect(() => {
-    setContentHtml(content ? marked(content) : "<p>Nothing yet...</p>");
+    setContentHtml(
+      DOMpurify.sanitize(content ? marked(content) : "<p>Nothing yet...</p>")
+    );
   });
 
   const setEdit = state => {
