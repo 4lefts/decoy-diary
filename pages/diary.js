@@ -81,7 +81,6 @@ const Diary = () => {
                 status={weekData.status}
                 submitNewData={sendEdits}
               />
-              {/* <WeekStatus status={weekData.status} submitNewData={sendEdits} /> */}
               {weekData.diary.map(day => (
                 <Day key={day.day} dayData={day} submitNewData={sendEdits} />
               ))}

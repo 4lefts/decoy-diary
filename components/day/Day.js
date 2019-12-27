@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import marked from "marked";
 import DayHeader from "./DayHeader";
 import DayEditForm from "./DayEditForm";
 
@@ -6,6 +7,11 @@ const Day = ({ dayData, submitNewData }) => {
   const { day, content, status } = dayData;
   const [isEditing, setIsEditing] = useState(false);
   const [editingData, setEditingData] = useState(dayData);
+  const [contentHtml, setContentHtml] = useState(marked(content));
+
+  useEffect(() => {
+    setContentHtml(content ? marked(content) : "<p>Nothing yet...</p>");
+  });
 
   const setEdit = state => {
     // reset to original data props
@@ -42,7 +48,7 @@ const Day = ({ dayData, submitNewData }) => {
 
   return (
     <>
-      <div>
+      <div className="day-container">
         <DayHeader
           day={day}
           isEditing={isEditing}
@@ -62,14 +68,14 @@ const Day = ({ dayData, submitNewData }) => {
             )}
             {status === "holiday" && <p className="special">Holiday</p>}
             {status === "normal" && (
-              <p>{content ? content : "Nothing yet..."}</p>
+              <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
             )}
           </>
         )}
       </div>
       <style jsx>
         {`
-          div {
+          div.day-container {
             background: white;
             padding: 10px;
             border-radius: 2px;

@@ -53,7 +53,7 @@ const DayEditForm = ({
           flex-direction: column;
         }
         .content-edit textarea {
-          height: 80px;
+          height: 200px;
           padding: 10px;
           background: white;
           border: 1px solid rgba(0, 0, 0, 0.2);
