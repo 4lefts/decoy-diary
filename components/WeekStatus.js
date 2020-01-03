@@ -18,21 +18,25 @@ const WeekStatus = ({ status, submitNewData }) => {
 
   return (
     <div>
-      <span onClick={handleStatusUpdate}>{currentStatus} Week</span>
+      <button onClick={handleStatusUpdate}>{currentStatus} Week</button>
       <style jsx>{`
-        span {
-          font-weight: 600;
-          margin-left: 20px;
-          text-transform: capitalize;
-          background: #dad6f3;
+        button {
           padding: 5px 10px;
+          text-decoration: none;
+          text-align: center;
+          font-size: 1.6rem;
+          font-weight: 700;
+          text-transform: capitalize;
+          color: rgba(0, 0, 0, 0.875);
+          background: white;
+          cursor: pointer;
+          border: none;
           border-radius: 2px;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
             0 1px 2px rgba(0, 0, 0, 0.24);
-          cursor: pointer;
-          transition: all 0.3s ease;
+          transition: background 0.3s ease;
         }
-        span:hover {
+        button:hover {
           background: slateblue;
           color: white;
         }
