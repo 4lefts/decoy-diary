@@ -20,6 +20,7 @@ const Diary = () => {
   useEffect(() => {
     function updateData(newData) {
       setWeekData(newData);
+      console.log(newData);
     }
     function updateDataLoadingState(bool) {
       setIsLoadingData(bool);
@@ -33,6 +34,7 @@ const Diary = () => {
     let unsubscribe = weeksRef.doc(currentMonday).onSnapshot(
       snapshot => {
         const data = snapshot.data() || makeBlankWeek();
+
         updateData(data);
         updateDataLoadingState(false);
       },
@@ -82,7 +84,12 @@ const Diary = () => {
                 submitNewData={sendEdits}
               />
               {weekData.diary.map(day => (
-                <Day key={day.day} dayData={day} submitNewData={sendEdits} />
+                <Day
+                  key={day.day}
+                  dayData={day}
+                  submitNewData={sendEdits}
+                  weekStatus={weekData.status}
+                />
               ))}
             </>
           )

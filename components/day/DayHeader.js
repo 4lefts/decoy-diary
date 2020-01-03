@@ -2,7 +2,7 @@ const DayHeader = ({ day, isEditing, handleClick }) => {
   return (
     <>
       <header>
-        <h3>{day}</h3>
+        <h2>{day}</h2>
         <button onClick={() => handleClick()}>
           {isEditing ? "Cancel" : "Edit"}
         </button>
@@ -14,8 +14,8 @@ const DayHeader = ({ day, isEditing, handleClick }) => {
           justify-content: space-between;
           align-items: center;
         }
-        h3 {
-          margin: 0.6em 0 0.6em 0;
+        h2 {
+          margin: 0.6em 0 0.1em 0;
         }
         button {
           margin-left: 20px;

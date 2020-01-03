@@ -4,7 +4,9 @@ import marked from "marked";
 import DayHeader from "./DayHeader";
 import DayEditForm from "./DayEditForm";
 
-const Day = ({ dayData, submitNewData }) => {
+const Day = ({ dayData, submitNewData, weekStatus }) => {
+  console.log(weekStatus);
+
   const { day, content, status } = dayData;
   const [isEditing, setIsEditing] = useState(false);
   const [editingData, setEditingData] = useState(dayData);
@@ -69,8 +71,10 @@ const Day = ({ dayData, submitNewData }) => {
             {status === "non-pupil day" && (
               <p className="special">Non-pupil day</p>
             )}
-            {status === "holiday" && <p className="special">Holiday</p>}
-            {status === "normal" && (
+            {(status === "holiday" || weekStatus === "holiday") && (
+              <p className="special">Holiday</p>
+            )}
+            {status === "normal" && weekStatus === "normal" && (
               <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
             )}
           </>
@@ -80,7 +84,7 @@ const Day = ({ dayData, submitNewData }) => {
         {`
           div.day-container {
             background: white;
-            padding: 10px;
+            padding: 10px 1em;
             border-radius: 2px;
             margin-bottom: 1em;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
