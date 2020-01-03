@@ -1,4 +1,5 @@
 import Loader from "./Loader";
+import Logo from "./Logo";
 
 export default ({ user, isLoadingUser, onSignIn, onSignOut }) => {
   const UserControls = () => {
@@ -61,16 +62,27 @@ export default ({ user, isLoadingUser, onSignIn, onSignOut }) => {
   return (
     <>
       <header>
-        <h1>Decoy Diary</h1>
+        <div className="title-box">
+          {user && (
+            <div className="logo-container">
+              <Logo size={"48px"} />
+            </div>
+          )}
+          <h1>Decoy Diary</h1>
+        </div>
         {UserControls()}
       </header>
       <style jsx>
         {`
-          header {
+          header,
+          .title-box {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+          }
+          .logo-container {
+            margin-right: 10px;
           }
         `}
       </style>

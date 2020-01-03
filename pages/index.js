@@ -1,13 +1,28 @@
 import withContainer from "../components/Container";
+import Logo from "../components/Logo";
 
 const Home = () => {
   return (
     <div>
-      <p>
-        This is the home page. There will be a logo here and stuff. If you're
-        seeing this, you're not signed in; signing in automatically redirects
-        you to /diary?monday=currentMonday.
-      </p>
+      <h1>Welcome</h1>
+      <Logo size={"240px"} />
+      <p>Please sign in using your Decoy School staff account.</p>
+      <style jsx>
+        {`
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+          h1 {
+            font-size: 6.4rem;
+          }
+          p {
+            font-size: 2.4rem;
+          }
+        `}
+      </style>
     </div>
   );
 };
