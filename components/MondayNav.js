@@ -40,7 +40,7 @@ export default ({ currentMonday, status, submitNewData }) => {
             text-align: center;
             font-size: 1em;
             font-weight: 700;
-            color: slateblue;
+            color: dodgerblue;
             background: white;
             cursor: pointer;
             border-radius: 2px;
@@ -49,7 +49,7 @@ export default ({ currentMonday, status, submitNewData }) => {
             transition: background 0.3s ease;
           }
           a:hover {
-            background: slateblue;
+            background: dodgerblue;
             color: white;
           }
           div {

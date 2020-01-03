@@ -64,7 +64,7 @@ const DayEditForm = ({
         }
         .status-select select:focus,
         .content-edit textarea:focus {
-          border: 2px solid slateblue;
+          border: 2px solid dodgerblue;
         }
         input.submit-btn {
           padding: 5px 10px;
@@ -73,7 +73,7 @@ const DayEditForm = ({
           font-size: 1em;
           font-weight: 700;
           background: white;
-          color: slateblue;
+          color: dodgerblue;
           cursor: pointer;
           border-radius: 2px;
           transition: all 0.3s ease;
@@ -81,8 +81,8 @@ const DayEditForm = ({
         input.submit-btn:hover,
         input.submit-btn:focus {
           color: white;
-          background: slateblue;
-          border-color: slateblue;
+          background: dodgerblue;
+          border-color: dodgerblue;
         }
       `}</style>
     </>

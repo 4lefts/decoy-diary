@@ -37,7 +37,7 @@ const WeekStatus = ({ status, submitNewData }) => {
           transition: background 0.3s ease;
         }
         button:hover {
-          background: slateblue;
+          background: dodgerblue;
           color: white;
         }
       `}</style>

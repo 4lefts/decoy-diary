@@ -1,27 +1,9 @@
-import Loader from "./Loader";
-import Logo from "./Logo";
-
-export default ({ user, isLoadingUser, onSignIn, onSignOut }) => {
+export default ({ user, onSignOut }) => {
   const UserControls = () => {
     return (
       <div>
         {user && <span>Signed in as {user.displayName}</span>}
-        <button
-          className={isLoadingUser ? "loading-btn" : ""}
-          onClick={() => {
-            user ? onSignOut() : onSignIn();
-          }}
-        >
-          {isLoadingUser ? (
-            <div className="loader">
-              <Loader size="18" color="white" />
-            </div>
-          ) : user ? (
-            <span>Sign Out</span>
-          ) : (
-            <span>Sign In</span>
-          )}
-        </button>
+        <button onClick={onSignOut}>Sign Out</button>
         <style jsx>
           {`
             div.loader {
@@ -38,7 +20,7 @@ export default ({ user, isLoadingUser, onSignIn, onSignOut }) => {
               border: none;
               font-size: 1em;
               font-weight: 700;
-              color: slateblue;
+              color: dodgerblue;
               background: white;
               cursor: pointer;
               border-radius: 2px;
@@ -47,11 +29,11 @@ export default ({ user, isLoadingUser, onSignIn, onSignOut }) => {
               transition: background 0.3s ease;
             }
             .loading-btn {
-              background: slateblue;
+              background: dodgerblue;
             }
             button:hover {
               color: white;
-              background: slateblue;
+              background: dodgerblue;
             }
           `}
         </style>
@@ -61,21 +43,16 @@ export default ({ user, isLoadingUser, onSignIn, onSignOut }) => {
 
   return (
     <>
-      <header>
-        <div className="title-box">
-          {user && (
-            <div className="logo-container">
-              <Logo size={"48px"} />
-            </div>
-          )}
+      {user && (
+        <header>
           <h1>Decoy Diary</h1>
-        </div>
-        {UserControls()}
-      </header>
+          {UserControls()}
+        </header>
+      )}
       <style jsx>
         {`
-          header,
-          .title-box {
+          header {
+            grid-area: header;
             display: flex;
             flex-direction: row;
             justify-content: space-between;

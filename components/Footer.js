@@ -12,6 +12,7 @@ const Footer = () => {
         {`
           footer {
             text-align: right;
+            grid-area: footer;
           }
         `}
       </style>

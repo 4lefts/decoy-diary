@@ -125,6 +125,7 @@ const withContainer = Content => {
           <Content
             isLoadingUser={this.state.isLoadingUser}
             currentMonday={calcCurrentMonday()}
+            onSignIn={() => this.handleSignIn()}
           />
           <Footer />
           {this.state.errorMessage && (
@@ -147,6 +148,10 @@ const withContainer = Content => {
                   display: grid;
                   grid-template-columns: 1fr;
                   grid-template-rows: auto 1fr auto;
+                  grid-template-areas:
+                    "header"
+                    "content"
+                    "footer";
                 }
               }
             `}

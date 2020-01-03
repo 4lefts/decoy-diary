@@ -24,7 +24,7 @@ const DayHeader = ({ day, isEditing, handleClick }) => {
           border: 1px solid rgba(0, 0, 0, 0.2);
           font-size: 1em;
           font-weight: 700;
-          color: slateblue;
+          color: dodgerblue;
           background: white;
           cursor: pointer;
           border-radius: 2px;
@@ -32,7 +32,7 @@ const DayHeader = ({ day, isEditing, handleClick }) => {
         }
         button:hover {
           color: white;
-          background: slateblue;
+          background: dodgerblue;
         }
       `}</style>
     </>

@@ -18,6 +18,8 @@ const Diary = () => {
   const weeksRef = db.collection("weeks");
 
   useEffect(() => {
+    console.log(calcCurrentMonday());
+
     function updateData(newData) {
       setWeekData(newData);
       console.log(newData);
@@ -74,7 +76,7 @@ const Diary = () => {
   //-------------
   return (
     <>
-      <div>
+      <main>
         {!isLoadingData ? (
           weekData && (
             <>
@@ -95,7 +97,7 @@ const Diary = () => {
           )
         ) : (
           <div className="loading">
-            <Loader size={"300"} color={"slateblue"} />
+            <Loader size={"300"} color={"dodgerblue"} />
           </div>
         )}
         {errorMessage && (
@@ -104,8 +106,11 @@ const Diary = () => {
             handleDismiss={() => setErrorMessage(null)}
           />
         )}
-      </div>
+      </main>
       <style jsx>{`
+        main {
+          grid-area: content;
+        }
         div.loading {
           height: 100%;
           display: flex;
