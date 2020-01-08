@@ -1,14 +1,14 @@
 const DayHeader = ({ day, isEditing, handleClick }) => {
   return (
     <>
-      <header>
+      <div>
         <h2>{day}</h2>
         <button onClick={() => handleClick()}>
           {isEditing ? "Cancel" : "Edit"}
         </button>
-      </header>
+      </div>
       <style jsx>{`
-        header {
+        div {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -24,7 +24,7 @@ const DayHeader = ({ day, isEditing, handleClick }) => {
           border: 1px solid rgba(0, 0, 0, 0.2);
           font-size: 1em;
           font-weight: 700;
-          color: dodgerblue;
+          color: rgba(0, 0, 0, 0.875);
           background: white;
           cursor: pointer;
           border-radius: 2px;
@@ -33,6 +33,11 @@ const DayHeader = ({ day, isEditing, handleClick }) => {
         button:hover {
           color: white;
           background: dodgerblue;
+        }
+        @media print {
+          button {
+            display: none;
+          }
         }
       `}</style>
     </>

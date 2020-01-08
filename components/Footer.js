@@ -14,6 +14,11 @@ const Footer = () => {
             text-align: right;
             grid-area: footer;
           }
+          @media print {
+            footer {
+              display: none;
+            }
+          }
         `}
       </style>
     </>

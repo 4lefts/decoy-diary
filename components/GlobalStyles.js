@@ -29,6 +29,11 @@ const GlobalStyles = () => (
       h1 {
         font-size: 3.6rem;
       }
+      @media print {
+        body {
+          font-size: 1rem;
+        }
+      }
     `}
   </style>
 );

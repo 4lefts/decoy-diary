@@ -18,8 +18,19 @@ const WeekStatus = ({ status, submitNewData }) => {
 
   return (
     <div>
-      <button onClick={handleStatusUpdate}>{currentStatus} Week</button>
+      <h3>{currentStatus} Week</h3>
+      <button onClick={handleStatusUpdate}>Change</button>
       <style jsx>{`
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+        h3 {
+          text-transform: capitalize;
+          margin-right: 1em;
+        }
         button {
           padding: 5px 10px;
           text-decoration: none;
@@ -39,6 +50,11 @@ const WeekStatus = ({ status, submitNewData }) => {
         button:hover {
           background: dodgerblue;
           color: white;
+        }
+        @media print {
+          div {
+            display: none;
+          }
         }
       `}</style>
     </div>

@@ -59,6 +59,16 @@ export default ({ currentMonday, status, submitNewData }) => {
             align-items: center;
             margin-bottom: 20px;
           }
+          @media print {
+            a {
+              display: none;
+            }
+            h2 {
+              margin-right: 0;
+              margin-left: 0;
+              margin-bottom: 0.2rem;
+            }
+          }
         `}
       </style>
     </div>

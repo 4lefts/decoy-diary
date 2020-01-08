@@ -35,6 +35,11 @@ export default ({ user, onSignOut }) => {
               color: white;
               background: dodgerblue;
             }
+            @media print {
+              div {
+                display: none;
+              }
+            }
           `}
         </style>
       </div>
@@ -58,8 +63,8 @@ export default ({ user, onSignOut }) => {
             justify-content: space-between;
             align-items: center;
           }
-          .logo-container {
-            margin-right: 10px;
+          h1 {
+            margin-bottom: 0.3rem;
           }
         `}
       </style>
