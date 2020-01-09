@@ -98,9 +98,9 @@ const Day = ({ dayData, submitNewData, weekStatus }) => {
           }
           @media print {
             div.day-container {
-              border: 1px solid rgba(0, 0, 0, 0.2);
               box-shadow: none;
               page-break-inside: avoid;
+              padding: 0;
             }
           }
         `}

@@ -6,17 +6,14 @@ export default ({ user, onSignOut }) => {
         <button onClick={onSignOut}>Sign Out</button>
         <style jsx>
           {`
-            div.loader {
-              width: 100%;
-              height: 23px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
+            div {
+              padding-right: 1em;
             }
             button {
               margin-left: 20px;
               padding: 5px 10px;
               width: 100px;
+              height: 35px;
               border: none;
               font-size: 1em;
               font-weight: 700;
@@ -58,13 +55,14 @@ export default ({ user, onSignOut }) => {
         {`
           header {
             grid-area: header;
+            margin: 1.6rem 0 1rem 0;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
           }
           h1 {
-            margin-bottom: 0.3rem;
+            margin: 0.3rem 0;
           }
         `}
       </style>

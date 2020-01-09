@@ -18,21 +18,24 @@ const WeekStatus = ({ status, submitNewData }) => {
 
   return (
     <div>
-      <h3>{currentStatus} Week</h3>
+      <span>{currentStatus} Week</span>
       <button onClick={handleStatusUpdate}>Change</button>
       <style jsx>{`
         div {
+          padding-right: 1em;
           display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: center;
         }
-        h3 {
+        span {
           text-transform: capitalize;
           margin-right: 1em;
         }
         button {
           padding: 5px 10px;
+          width: 100px;
+          height: 35px;
           text-decoration: none;
           text-align: center;
           font-size: 1.6rem;

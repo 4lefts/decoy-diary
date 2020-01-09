@@ -38,7 +38,7 @@ export default ({ currentMonday, status, submitNewData }) => {
             width: 65px;
             text-decoration: none;
             text-align: center;
-            font-size: 1em;
+            font-size: 1.6rem;
             font-weight: 700;
             color: dodgerblue;
             background: white;
@@ -60,6 +60,9 @@ export default ({ currentMonday, status, submitNewData }) => {
             margin-bottom: 20px;
           }
           @media print {
+            div {
+              margin-bottom: 1rem;
+            }
             a {
               display: none;
             }
