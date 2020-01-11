@@ -11,7 +11,6 @@ const Footer = () => {
       <style jsx>
         {`
           footer {
-            text-align: right;
             grid-area: footer;
           }
           @media print {

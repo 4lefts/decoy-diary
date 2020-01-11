@@ -1,9 +1,16 @@
+import { useState, useEffect } from "react";
+
 const MessageBox = ({ message, handleDismiss }) => {
+  useEffect(() => {
+    console.log(JSON.stringify(message));
+  });
   return (
     <>
       <div>
-        <p>{message}</p>
-        <button onClick={() => handleDismiss()}>Dismiss</button>
+        <p>{message.payload}</p>
+        {message.duration > 4000 && (
+          <button onClick={() => handleDismiss()}>Dismiss</button>
+        )}
       </div>
       <style jsx>
         {`

@@ -14,14 +14,17 @@ const Diary = () => {
   const currentMonday = router.query.monday || calcCurrentMonday();
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [weekData, setWeekData] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState({
+    message: { payload: null, duration: Infinity }
+  });
   const weeksRef = db.collection("weeks");
 
-  function showMessage(msg) {
-    setMessage(msg);
+  function showMessage(msg, dur) {
+    setMessage({ message: { payload: msg, duration: dur } });
+    console.log(message);
     setTimeout(() => {
-      setMessage(null);
-    }, 2500);
+      setMessage({ message: { payload: null, duration: Infinity } });
+    }, dur);
   }
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const Diary = () => {
         updateDataLoadingState(false);
       },
       err => {
-        showMessage(`Sorry, there was an error: ${err.code}.`);
+        showMessage(`Sorry, there was an error: ${err.code}.`, Infinity);
         updateDataLoadingState(false);
       }
     );
@@ -69,9 +72,9 @@ const Diary = () => {
     weeksRef
       .doc(currentMonday)
       .set(dataToUpdate)
-      .then(() => showMessage("updated!"))
+      .then(() => showMessage("updated!", 2500))
       .catch(err => {
-        showMessage(`Sorry, there was an error: ${err.code}.`);
+        showMessage(`Sorry, there was an error: ${err.code}.`, Infinity);
       });
   };
 
@@ -102,10 +105,12 @@ const Diary = () => {
             <Loader size={"300"} color={"dodgerblue"} />
           </div>
         )}
-        {message && (
+        {message.payload && (
           <MessageBox
             message={message}
-            handleDismiss={() => setMessage(null)}
+            handleDismiss={() =>
+              setMessage({ message: { payload: null, duration: Infinity } })
+            }
           />
         )}
       </main>

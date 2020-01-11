@@ -22,7 +22,10 @@ const withContainer = Content => {
         user: null,
         unsub: null,
         isLoadingUser: false,
-        message: null
+        message: {
+          payload: null,
+          duration: Infinity
+        }
       };
     }
 
@@ -48,11 +51,15 @@ const withContainer = Content => {
             .signOut()
             .then(() =>
               this.updateMessage(
-                "Please sign in using a Decoy School staff email account."
+                "Please sign in using a Decoy School staff email account.",
+                3000
               )
             )
             .catch(err =>
-              this.updateMessage(`Sorry, there was an error: ${err.code}.`)
+              this.updateMessage(
+                `Sorry, there was an error: ${err.code}.`,
+                Infinity
+              )
             );
           return;
         }
@@ -70,9 +77,12 @@ const withContainer = Content => {
       if (this.state.unsub) this.state.unsub();
     }
 
-    updateMessage(msg) {
-      this.setState({ message: msg });
-      setTimeout(() => this.setState({ message: null }), 2500);
+    updateMessage(msg, dur) {
+      this.setState({ message: { payload: msg, duration: dur } });
+      setTimeout(
+        () => this.setState({ message: { payload: null, duration: Infinity } }),
+        dur
+      );
     }
 
     handleSignIn = () => {
@@ -84,7 +94,10 @@ const withContainer = Content => {
           this.setState({ isLoadingUser: false });
         })
         .catch(err => {
-          this.updateMessage(`Sorry, there was an error: ${err.code}.`);
+          this.updateMessage(
+            `Sorry, there was an error: ${err.code}.`,
+            Infinity
+          );
           this.setState({ isLoadingUser: false });
         });
     };
@@ -97,7 +110,10 @@ const withContainer = Content => {
           this.setState({ isLoadingUser: false });
         })
         .catch(err => {
-          this.updateMessage(`Sorry, there was an error: ${err.code}.`);
+          this.updateMessage(
+            `Sorry, there was an error: ${err.code}.`,
+            Infinity
+          );
           this.setState({ isLoadingUser: false });
         });
     };
@@ -130,10 +146,14 @@ const withContainer = Content => {
             onSignIn={() => this.handleSignIn()}
           />
           <Footer />
-          {this.state.message && (
+          {this.state.message.payload && (
             <MessageBox
               message={this.state.message}
-              handleDismiss={() => this.setState({ message: null })}
+              handleDismiss={() =>
+                this.setState({
+                  message: { payload: null, duration: Infinity }
+                })
+              }
             />
           )}
           <GlobalStyles />

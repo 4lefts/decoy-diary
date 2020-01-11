@@ -1,4 +1,4 @@
-export default ({ size, color = "dodgerblue", hoverColor = "navy" }) => (
+export default ({ size, color = "black", hoverColor = "navy" }) => (
   <>
     <svg viewBox="0, 0, 400,400" height={size} width={size} id="svg">
       <g
