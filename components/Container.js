@@ -12,7 +12,7 @@ import GlobalStyles from "./GlobalStyles";
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
-import ErrorBox from "./ErrorBox";
+import MessageBox from "./MessageBox";
 
 const withContainer = Content => {
   return class Layout extends React.Component {
@@ -22,7 +22,7 @@ const withContainer = Content => {
         user: null,
         unsub: null,
         isLoadingUser: false,
-        errorMessage: null
+        message: null
       };
     }
 
@@ -47,11 +47,13 @@ const withContainer = Content => {
           auth
             .signOut()
             .then(() =>
-              this.updateErrorMessage(
+              this.updateMessage(
                 "Please sign in using a Decoy School staff email account."
               )
             )
-            .catch(err => this.updateErrorMessage(err.code));
+            .catch(err =>
+              this.updateMessage(`Sorry, there was an error: ${err.code}.`)
+            );
           return;
         }
         // if this is a staff account
@@ -68,9 +70,9 @@ const withContainer = Content => {
       if (this.state.unsub) this.state.unsub();
     }
 
-    updateErrorMessage(code) {
-      const msg = `Sorry, there was an error: ${code}.`;
-      this.setState({ errorMessage: msg });
+    updateMessage(msg) {
+      this.setState({ message: msg });
+      setTimeout(() => this.setState({ message: null }), 2500);
     }
 
     handleSignIn = () => {
@@ -82,7 +84,7 @@ const withContainer = Content => {
           this.setState({ isLoadingUser: false });
         })
         .catch(err => {
-          this.updateErrorMessage(err.code);
+          this.updateMessage(`Sorry, there was an error: ${err.code}.`);
           this.setState({ isLoadingUser: false });
         });
     };
@@ -95,7 +97,7 @@ const withContainer = Content => {
           this.setState({ isLoadingUser: false });
         })
         .catch(err => {
-          this.updateErrorMessage(err.code);
+          this.updateMessage(`Sorry, there was an error: ${err.code}.`);
           this.setState({ isLoadingUser: false });
         });
     };
@@ -128,10 +130,10 @@ const withContainer = Content => {
             onSignIn={() => this.handleSignIn()}
           />
           <Footer />
-          {this.state.errorMessage && (
-            <ErrorBox
-              message={this.state.errorMessage}
-              handleDismiss={() => this.setState({ errorMessage: null })}
+          {this.state.message && (
+            <MessageBox
+              message={this.state.message}
+              handleDismiss={() => this.setState({ message: null })}
             />
           )}
           <GlobalStyles />

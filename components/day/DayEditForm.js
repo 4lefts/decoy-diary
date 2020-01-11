@@ -30,7 +30,7 @@ const DayEditForm = ({
             onChange={event => handleContentEdit(event.target.value)}
           />
         </label>
-        <input className="submit-btn" type="submit" value="Submit" />
+        <input className="submit-btn" type="submit" value="Save" />
       </form>
       <style jsx>{`
         form {

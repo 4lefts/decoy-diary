@@ -7,29 +7,29 @@ import withContainer from "../components/Container";
 import MondayNav from "../components/MondayNav";
 import Day from "../components/day/Day";
 import Loader from "../components/Loader";
-import ErrorBox from "../components/ErrorBox";
+import MessageBox from "../components/MessageBox";
 
 const Diary = () => {
   const router = useRouter();
   const currentMonday = router.query.monday || calcCurrentMonday();
   const [isLoadingData, setIsLoadingData] = useState(true);
   const [weekData, setWeekData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [message, setMessage] = useState(null);
   const weeksRef = db.collection("weeks");
 
-  useEffect(() => {
-    console.log(calcCurrentMonday());
+  function showMessage(msg) {
+    setMessage(msg);
+    setTimeout(() => {
+      setMessage(null);
+    }, 2500);
+  }
 
+  useEffect(() => {
     function updateData(newData) {
       setWeekData(newData);
-      console.log(newData);
     }
     function updateDataLoadingState(bool) {
       setIsLoadingData(bool);
-    }
-    function updateErrorMessage(code) {
-      const msg = `Sorry, there was an error: ${code}.`;
-      setErrorMessage(msg);
     }
     updateDataLoadingState(true);
     // firestore listener returns an unsubscribe function
@@ -41,7 +41,7 @@ const Diary = () => {
         updateDataLoadingState(false);
       },
       err => {
-        updateErrorMessage(err.code);
+        showMessage(`Sorry, there was an error: ${err.code}.`);
         updateDataLoadingState(false);
       }
     );
@@ -69,8 +69,10 @@ const Diary = () => {
     weeksRef
       .doc(currentMonday)
       .set(dataToUpdate)
-      .then(() => console.log("data updated!"))
-      .catch(err => updateErrorMessage(err.code));
+      .then(() => showMessage("updated!"))
+      .catch(err => {
+        showMessage(`Sorry, there was an error: ${err.code}.`);
+      });
   };
 
   //-------------
@@ -100,10 +102,10 @@ const Diary = () => {
             <Loader size={"300"} color={"dodgerblue"} />
           </div>
         )}
-        {errorMessage && (
-          <ErrorBox
-            message={errorMessage}
-            handleDismiss={() => setErrorMessage(null)}
+        {message && (
+          <MessageBox
+            message={message}
+            handleDismiss={() => setMessage(null)}
           />
         )}
       </main>

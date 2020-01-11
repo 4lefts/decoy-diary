@@ -5,8 +5,6 @@ import DayHeader from "./DayHeader";
 import DayEditForm from "./DayEditForm";
 
 const Day = ({ dayData, submitNewData, weekStatus }) => {
-  console.log(weekStatus);
-
   const { day, content, status } = dayData;
   const [isEditing, setIsEditing] = useState(false);
   const [editingData, setEditingData] = useState(dayData);

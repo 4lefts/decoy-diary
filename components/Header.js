@@ -64,6 +64,12 @@ export default ({ user, onSignOut }) => {
           h1 {
             margin: 0.3rem 0;
           }
+          @media print {
+            header,
+            h1 {
+              page-break-after: avoid;
+            }
+          }
         `}
       </style>
     </>
